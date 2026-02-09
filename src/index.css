@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-/* Enhanced web pattern background */
+/* Black background with enhanced web pattern */
 .web-pattern {
+  background-color: #000000;
   background-image: radial-gradient(
       circle at 25% 25%,
       rgba(0, 255, 136, 0.15) 0%,
@@ -20,6 +21,17 @@
   background-size: 800px 800px, 600px 600px, 1000px 1000px;
   animation: float 8s ease-in-out infinite;
   color: white;
+}
+
+/* Modern heading style with lime color and text shadow */
+.modern-heading {
+  text-shadow: 
+    0 0 10px rgba(190, 255, 0, 0.8),
+    0 0 20px rgba(190, 255, 0, 0.6),
+    0 0 30px rgba(190, 255, 0, 0.4),
+    0 0 40px rgba(190, 255, 0, 0.2),
+    2px 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.02em;
 }
 
 /* animatsiya bo‘lishi uchun */
