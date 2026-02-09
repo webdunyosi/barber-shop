@@ -64,7 +64,7 @@ const App = () => {
               <div key={barber.id} className="bg-gray-800 rounded-lg overflow-hidden">
                 <img 
                   src={barber.image} 
-                  alt={barber.name}
+                  alt={`${barber.name} - ${barber.specialty}`}
                   className="w-full h-64 object-cover"
                 />
                 <div className="p-4">
