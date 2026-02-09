@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Dark mode base styles - qorong'u rejim */
+body {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* Lime colored headers - sarlovhalar lime rangida */
+h1, h2, h3, h4, h5, h6 {
+  color: #bef264;
+}
+
 /* Enhanced web pattern background */
 .web-pattern {
   background-image: radial-gradient(
