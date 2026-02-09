@@ -39,7 +39,8 @@ const TimeSelection = ({ timeSlots, selectedDate, selectedTime, onSelectDate, on
     if (!date) return false;
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    return date >= today && date.getDay() !== 0; // Not Sunday
+    // Exclude Sundays (day 0) - shop is closed and past dates
+    return date >= today && date.getDay() !== 0;
   };
 
   const formatDate = (date) => {

@@ -6,8 +6,17 @@ import { formatPrice } from './format';
 const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || ''; // Set in .env file
 const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || ''; // Set in .env file
 
+// Check if credentials are configured
+const isTelegramConfigured = () => {
+  return TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID;
+};
+
 export const sendBookingToTelegram = async (bookingData) => {
   try {
+    if (!isTelegramConfigured()) {
+      console.warn('Telegram credentials not configured. Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file');
+    }
+    
     const message = `
 🎉 *Yangi buyurtma!*
 
@@ -56,6 +65,10 @@ export const sendBookingToTelegram = async (bookingData) => {
 
 export const sendPaymentReceiptToTelegram = async (paymentData) => {
   try {
+    if (!isTelegramConfigured()) {
+      console.warn('Telegram credentials not configured. Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file');
+    }
+    
     const message = `
 🧾 *To'lov cheki*
 
