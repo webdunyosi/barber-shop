@@ -145,7 +145,7 @@ const PaymentForm = ({ paymentData, onUpdate, bookingInfo }) => {
       {/* Payment Instructions */}
       <div className="bg-linear-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/40 rounded-2xl p-6 mb-6">
         <div className="flex items-start gap-3">
-          <div className="w-10 h-10 bg-blue-500/30 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+          <div className="w-10 h-10 bg-blue-500/30 rounded-full flex items-center justify-center shrink-0 mt-1">
             <span className="text-2xl">💡</span>
           </div>
           <div className="text-white">

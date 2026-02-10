@@ -142,14 +142,14 @@ const App = () => {
   return (
     <div className="min-h-screen bg-zinc-950 web-pattern">
       {/* Header */}
-      <header className="bg-linear-to-r from-zinc-900/95 via-zinc-950/95 to-zinc-900/95 backdrop-blur-lg text-white shadow-md sticky top-0 z-40">
-        <div className="container mx-auto pl-4 pr-7 py-4">
+      <header className="bg-linear-to-r from-zinc-900/95 via-zinc-950/95 to-zinc-900/95 backdrop-blur-lg text-white shadow-md shadow-emerald-500 sticky top-0 z-40">
+        <div className="container mx-auto pl-4 pr-7 py-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-4xl">💈</span>
+              <img className='w-20' src="logo.png" alt="" />
               <div>
-                <h1 className="text-2xl font-bold">Barber Shop</h1>
-                <p className="text-sm">Professional Sartaroshxona</p>
+                <h1 className="text-2xl font-bold uppercase">Web Barber</h1>
+                <p className="text-sm text-emerald-500">Professional Sartaroshxona</p>
               </div>
             </div>
             {/* Step Indicator */}
@@ -182,7 +182,7 @@ const App = () => {
                       <div
                         className={`h-full rounded-full transition-all duration-700 ease-out ${
                           step < currentStep 
-                            ? 'w-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50' 
+                            ? 'w-full bg-linear-to-r from-emerald-400 to-emerald-500 shadow-lg shadow-emerald-400/50' 
                             : 'w-0 bg-gray-400'
                         }`}
                       />
@@ -254,9 +254,9 @@ const App = () => {
           {currentStep > STEPS.SERVICE && (
             <button
               onClick={handleBack}
-              className="group relative flex-1 bg-gradient-to-br from-zinc-700 via-zinc-800 to-zinc-900 text-white py-4 px-6 rounded-xl font-semibold overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] border border-zinc-600 hover:border-zinc-500 backdrop-blur-xl"
+              className="group relative flex-1 bg-linear-to-br from-zinc-700 via-zinc-800 to-zinc-900 text-white py-4 px-6 rounded-xl font-semibold overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] border border-zinc-600 hover:border-zinc-500 backdrop-blur-xl"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-zinc-600/0 via-zinc-500/30 to-zinc-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
+              <span className="absolute inset-0 bg-linear-to-r from-zinc-600/0 via-zinc-500/30 to-zinc-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
               <span className="relative flex items-center justify-center gap-2">
                 <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -270,12 +270,12 @@ const App = () => {
             disabled={!validateStep() || isProcessing}
             className={`group relative flex-1 py-4 px-6 rounded-xl font-semibold overflow-hidden shadow-lg transition-all duration-300 ease-out border backdrop-blur-xl ${
               validateStep() && !isProcessing
-                ? 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-green-600 text-white hover:shadow-2xl hover:shadow-emerald-500/50 hover:scale-[1.02] active:scale-[0.98] border-emerald-400 hover:border-emerald-300 animate-glow-pulse'
+                ? 'bg-linear-to-br from-emerald-500 via-emerald-600 to-green-600 text-white hover:shadow-2xl hover:shadow-emerald-500/50 hover:scale-[1.02] active:scale-[0.98] border-emerald-400 hover:border-emerald-300 animate-glow-pulse'
                 : 'bg-white/10 text-gray-400 cursor-not-allowed border-white/20 hover:bg-white/15 hover:border-white/30'
             }`}
           >
             {validateStep() && !isProcessing && (
-              <span className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-white/30 to-emerald-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
+              <span className="absolute inset-0 bg-linear-to-r from-emerald-400/0 via-white/30 to-emerald-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
             )}
             <span className="relative flex items-center justify-center gap-2">
               {isProcessing ? (

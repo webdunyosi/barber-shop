@@ -20,7 +20,7 @@ const ServiceSelection = ({ services, selectedService, onSelectService }) => {
             }}
             className={`group relative cursor-pointer border rounded-xl p-8 transition-all duration-300 backdrop-blur-md ${
               selectedService?.id === service.id
-                ? 'bg-gradient-to-br from-green-500/20 via-emerald-500/10 to-green-500/20 border-green-400 shadow-2xl shadow-green-500/50 scale-105 ring-2 ring-green-400/50'
+                ? 'bg-linear-to-br from-green-500/20 via-emerald-500/10 to-green-500/20 border-green-400 shadow-2xl shadow-green-500/50 scale-105 ring-2 ring-green-400/50'
                 : 'bg-zinc-800/70 border-green-500/30 hover:border-green-500/60 hover:shadow-xl hover:shadow-green-500/20 hover:bg-zinc-800/90 hover:scale-[1.02] active:scale-[0.98]'
             }`}
           >
@@ -33,7 +33,7 @@ const ServiceSelection = ({ services, selectedService, onSelectService }) => {
             )}
             {/* Shine effect on hover */}
             <div className="absolute inset-0 rounded-xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
             </div>
             <div className="flex items-center gap-4 relative z-10">
               <div className={`text-5xl transition-all duration-300 ${
