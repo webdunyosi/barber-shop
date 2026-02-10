@@ -153,11 +153,14 @@ const App = () => {
               </div>
             </div>
             {/* Step Indicator */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3" role="navigation" aria-label="Booking progress">
               {[1, 2, 3, 4].map((step) => (
                 <React.Fragment key={step}>
                   <div
-                    className={`group relative w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-bold transition-all duration-500 cursor-pointer backdrop-blur-xl border-2 shadow-lg ${
+                    role="status"
+                    aria-current={step === currentStep ? 'step' : undefined}
+                    aria-label={`Step ${step}${step < currentStep ? ' completed' : step === currentStep ? ' current' : ' upcoming'}`}
+                    className={`group relative w-12 h-12 rounded-2xl flex items-center justify-center text-sm font-bold transition-all duration-500 backdrop-blur-xl border-2 shadow-lg ${
                       step === currentStep
                         ? 'bg-emerald-500/90 text-white border-emerald-400 shadow-emerald-500/50 scale-110 animate-pulse-glow'
                         : step < currentStep
@@ -167,15 +170,15 @@ const App = () => {
                   >
                     <span className={`relative z-10 transition-transform duration-300 ${
                       step === currentStep ? 'scale-110' : 'group-hover:scale-110'
-                    }`}>
+                    }`} aria-hidden="true">
                       {step < currentStep ? '✓' : step}
                     </span>
                     {step === currentStep && (
-                      <span className="absolute inset-0 rounded-2xl bg-emerald-400/30 animate-ping"></span>
+                      <span className="absolute inset-0 rounded-2xl bg-emerald-400/30 animate-ping" aria-hidden="true"></span>
                     )}
                   </div>
                   {step < 4 && (
-                    <div className="relative w-12 h-1 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm">
+                    <div className="relative w-12 h-1 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm" aria-hidden="true">
                       <div
                         className={`h-full rounded-full transition-all duration-700 ease-out ${
                           step < currentStep 
