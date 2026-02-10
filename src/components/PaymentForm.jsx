@@ -4,50 +4,35 @@ import { formatPrice } from '../utils/format';
 const PaymentForm = ({ paymentData, onUpdate, bookingInfo }) => {
   const [errors, setErrors] = useState({});
 
-  const handleChange = (field, value) => {
-    onUpdate({ ...paymentData, [field]: value });
-    
-    // Clear error when user starts typing
-    if (errors[field]) {
-      setErrors({ ...errors, [field]: '' });
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!validTypes.includes(file.type)) {
+        setErrors({ receipt: 'Faqat rasm fayllarini yuklang (JPG, PNG, WEBP)' });
+        return;
+      }
+      
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setErrors({ receipt: 'Fayl hajmi 5MB dan kichik bo\'lishi kerak' });
+        return;
+      }
+      
+      onUpdate({ ...paymentData, receipt: file });
+      setErrors({ ...errors, receipt: '' });
     }
-  };
-
-  const formatCardNumber = (value) => {
-    const cleaned = value.replace(/\s/g, '').replace(/\D/g, '');
-    const limited = cleaned.slice(0, 16);
-    const formatted = limited.match(/.{1,4}/g)?.join(' ') || limited;
-    return formatted;
-  };
-
-  const formatExpiryDate = (value) => {
-    const cleaned = value.replace(/\D/g, '');
-    if (cleaned.length >= 2) {
-      return cleaned.slice(0, 2) + '/' + cleaned.slice(2, 4);
-    }
-    return cleaned;
-  };
-
-  const handleCardNumberChange = (value) => {
-    const formatted = formatCardNumber(value);
-    handleChange('cardNumber', formatted);
-  };
-
-  const handleExpiryChange = (value) => {
-    const formatted = formatExpiryDate(value);
-    handleChange('expiry', formatted);
-  };
-
-  const handleCvvChange = (value) => {
-    const cleaned = value.replace(/\D/g, '').slice(0, 3);
-    handleChange('cvv', cleaned);
   };
 
   return (
     <div className="w-full max-w-md mx-auto">
       {/* Order Summary */}
-      <div className="bg-zinc-800/70 border border-green-500/50 rounded-xl p-8 mb-6 text-white">
-        <h3 className="text-xl font-semibold mb-4">Buyurtma tafsilotlari</h3>
+      <div className="bg-gradient-to-br from-zinc-800/90 to-zinc-900/90 border border-emerald-500/30 rounded-2xl p-8 mb-6 text-white shadow-2xl backdrop-blur-sm">
+        <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+          <span className="text-2xl">📋</span>
+          Buyurtma tafsilotlari
+        </h3>
         <div className="space-y-2">
           <div className="flex justify-between">
             <span className="opacity-90">Xizmat:</span>
@@ -64,111 +49,135 @@ const PaymentForm = ({ paymentData, onUpdate, bookingInfo }) => {
           <div className="border-t border-white/30 my-3"></div>
           <div className="flex justify-between text-xl">
             <span className="font-semibold">Jami:</span>
-            <span className="font-bold">{formatPrice(bookingInfo.service.price)} so'm</span>
+            <span className="font-bold text-emerald-400">{formatPrice(bookingInfo.service.price)} so'm</span>
           </div>
         </div>
       </div>
 
-      {/* Payment Form */}
-      <div className="bg-zinc-800/70 border border-green-500/50 rounded-xl p-8">
-        <div className="space-y-6">
-          {/* Card Number */}
+      {/* Card Information Display */}
+      <div className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-700 rounded-2xl p-8 mb-6 text-white shadow-2xl relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div className="relative z-10">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-12 h-8 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-md"></div>
+              <span className="text-sm font-semibold uppercase tracking-wider opacity-90">Bank Kartasi</span>
+            </div>
+            <svg className="w-12 h-12 opacity-90" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="23" stroke="currentColor" strokeWidth="2"/>
+              <circle cx="16" cy="24" r="8" fill="currentColor" opacity="0.5"/>
+              <circle cx="32" cy="24" r="8" fill="currentColor" opacity="0.5"/>
+            </svg>
+          </div>
+          
+          <div className="mb-6">
+            <p className="text-sm opacity-80 mb-2">Karta raqami</p>
+            <p className="text-3xl font-bold tracking-wider font-mono">4073 4200 6820 8093</p>
+          </div>
+          
+          <div className="flex items-end justify-between">
+            <div>
+              <p className="text-xs opacity-80 mb-1">Karta egasi</p>
+              <p className="text-lg font-semibold uppercase tracking-wide">Alimardon Toshpulatov</p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs opacity-80">💳 Uzcard</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Payment Instructions */}
+      <div className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 border border-blue-500/40 rounded-2xl p-6 mb-6">
+        <div className="flex items-start gap-3">
+          <div className="w-10 h-10 bg-blue-500/30 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+            <span className="text-2xl">💡</span>
+          </div>
+          <div className="text-white">
+            <h4 className="font-semibold text-lg mb-2">To'lov qilish bo'yicha ko'rsatma</h4>
+            <ol className="text-sm space-y-2 opacity-90 list-decimal list-inside">
+              <li>Yuqoridagi karta raqamiga o'z ilovangizdan pul o'tkazing</li>
+              <li>To'lov amalga oshirilgandan keyin chekni surat qiling</li>
+              <li>Suratni quyidagi tugma orqali yuklang</li>
+              <li>"To'lovni amalga oshirish" tugmasini bosing</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      {/* Receipt Upload */}
+      <div className="bg-gradient-to-br from-zinc-800/90 to-zinc-900/90 border border-emerald-500/30 rounded-2xl p-8 shadow-2xl backdrop-blur-sm">
+        <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+          <span className="text-2xl">🧾</span>
+          To'lov chekini yuklang
+        </h3>
+        
+        <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Karta raqami *
+            <label className="block text-sm font-medium text-gray-300 mb-3">
+              Chek surati (JPG, PNG yoki WEBP) *
             </label>
+            
+            {/* File input button */}
             <div className="relative">
               <input
-                type="text"
-                value={paymentData.cardNumber || ''}
-                onChange={(e) => handleCardNumberChange(e.target.value)}
-                placeholder="1234 5678 9012 3456"
-                maxLength="19"
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all bg-gray-700 text-white ${
-                  errors.cardNumber ? 'border-red-500' : 'border-gray-600'
-                }`}
+                type="file"
+                id="receipt-upload"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                onChange={handleFileChange}
+                className="hidden"
               />
-              <div className="absolute right-3 top-3">
-                💳
-              </div>
+              <label
+                htmlFor="receipt-upload"
+                className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-emerald-500/40 rounded-xl cursor-pointer bg-zinc-900/50 hover:bg-zinc-800/50 transition-all duration-300 group"
+              >
+                {paymentData.receipt ? (
+                  <div className="flex flex-col items-center gap-2">
+                    <svg className="w-12 h-12 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p className="text-sm text-emerald-400 font-medium">{paymentData.receipt.name}</p>
+                    <p className="text-xs text-gray-400">{(paymentData.receipt.size / 1024 / 1024).toFixed(2)} MB</p>
+                    <p className="text-xs text-emerald-500 mt-2">Boshqa rasm yuklash uchun bosing</p>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center gap-2">
+                    <svg className="w-12 h-12 text-gray-400 group-hover:text-emerald-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p className="text-sm text-gray-400 group-hover:text-emerald-500 transition-colors">
+                      <span className="font-semibold">Bosing</span> yoki shu yerga tashlang
+                    </p>
+                    <p className="text-xs text-gray-500">JPG, PNG yoki WEBP (max 5MB)</p>
+                  </div>
+                )}
+              </label>
             </div>
-            {errors.cardNumber && (
-              <p className="mt-1 text-sm text-red-500">{errors.cardNumber}</p>
+            
+            {errors.receipt && (
+              <p className="mt-2 text-sm text-red-400 flex items-center gap-1">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+                {errors.receipt}
+              </p>
             )}
           </div>
 
-          {/* Expiry Date and CVV */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Amal qilish muddati *
-              </label>
-              <input
-                type="text"
-                value={paymentData.expiry || ''}
-                onChange={(e) => handleExpiryChange(e.target.value)}
-                placeholder="MM/YY"
-                maxLength="5"
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all bg-gray-700 text-white ${
-                  errors.expiry ? 'border-red-500' : 'border-gray-600'
-                }`}
+          {/* Preview uploaded image */}
+          {paymentData.receipt && (
+            <div className="mt-4 p-4 bg-zinc-900/70 rounded-xl border border-emerald-500/20">
+              <p className="text-sm text-gray-300 mb-2 font-medium">Yuklangan chek:</p>
+              <img 
+                src={URL.createObjectURL(paymentData.receipt)} 
+                alt="To'lov cheki" 
+                className="w-full h-auto max-h-64 object-contain rounded-lg border border-emerald-500/30"
               />
-              {errors.expiry && (
-                <p className="mt-1 text-sm text-red-500">{errors.expiry}</p>
-              )}
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                CVV *
-              </label>
-              <input
-                type="text"
-                value={paymentData.cvv || ''}
-                onChange={(e) => handleCvvChange(e.target.value)}
-                placeholder="123"
-                maxLength="3"
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all bg-gray-700 text-white ${
-                  errors.cvv ? 'border-red-500' : 'border-gray-600'
-                }`}
-              />
-              {errors.cvv && (
-                <p className="mt-1 text-sm text-red-500">{errors.cvv}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Cardholder Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Karta egasining ismi *
-            </label>
-            <input
-              type="text"
-              value={paymentData.cardholderName || ''}
-              onChange={(e) => handleChange('cardholderName', e.target.value.toUpperCase())}
-              placeholder="ISM FAMILIYA"
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all uppercase bg-gray-700 text-white ${
-                errors.cardholderName ? 'border-red-500' : 'border-gray-600'
-              }`}
-            />
-            {errors.cardholderName && (
-              <p className="mt-1 text-sm text-red-500">{errors.cardholderName}</p>
-            )}
-          </div>
-
-          {/* Security Note */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <div className="flex items-start gap-2">
-              <svg className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-              <div className="text-sm text-blue-800">
-                <p className="font-medium mb-1">Xavfsiz to'lov</p>
-                <p className="text-xs">Barcha to'lovlar shifrlangan aloqa orqali amalga oshiriladi. Karta ma'lumotlaringiz xavfsiz saqlanadi.</p>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

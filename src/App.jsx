@@ -25,10 +25,7 @@ const App = () => {
     telegram: '',
   });
   const [paymentData, setPaymentData] = useState({
-    cardNumber: '',
-    expiry: '',
-    cvv: '',
-    cardholderName: '',
+    receipt: null,
   });
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -54,12 +51,7 @@ const App = () => {
           personalInfo.phone.replace(/\D/g, '').length === 12
         );
       case STEPS.PAYMENT:
-        return (
-          paymentData.cardNumber.replace(/\s/g, '').length === 16 &&
-          paymentData.expiry.length === 5 &&
-          paymentData.cvv.length === 3 &&
-          paymentData.cardholderName.trim() !== ''
-        );
+        return paymentData.receipt !== null;
       default:
         return false;
     }
@@ -107,7 +99,7 @@ const App = () => {
       // Send payment receipt to Telegram
       const paymentInfo = {
         ...bookingInfo,
-        cardNumber: paymentData.cardNumber,
+        receipt: paymentData.receipt,
       };
       await sendPaymentReceiptToTelegram(paymentInfo);
 
@@ -128,7 +120,7 @@ const App = () => {
     setSelectedDate(null);
     setSelectedTime(null);
     setPersonalInfo({ name: '', phone: '', telegram: '' });
-    setPaymentData({ cardNumber: '', expiry: '', cvv: '', cardholderName: '' });
+    setPaymentData({ receipt: null });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
