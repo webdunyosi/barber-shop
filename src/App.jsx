@@ -248,33 +248,52 @@ const App = () => {
           {currentStep > STEPS.SERVICE && (
             <button
               onClick={handleBack}
-              className="flex-1 bg-gray-200 text-gray-700 py-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              className="group relative flex-1 bg-gradient-to-br from-zinc-700 via-zinc-800 to-zinc-900 text-white py-4 px-6 rounded-xl font-semibold overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98] border border-zinc-600 hover:border-zinc-500"
             >
-              ← Ortga
+              <span className="absolute inset-0 bg-gradient-to-r from-zinc-600/0 via-zinc-500/30 to-zinc-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
+              <span className="relative flex items-center justify-center gap-2">
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+                <span className="text-lg">Ortga</span>
+              </span>
             </button>
           )}
           <button
             onClick={handleNext}
             disabled={!validateStep() || isProcessing}
-            className={`flex-1 py-4 rounded-lg font-semibold transition-colors ${
+            className={`group relative flex-1 py-4 px-6 rounded-xl font-semibold overflow-hidden shadow-lg transition-all duration-300 ease-out border ${
               validateStep() && !isProcessing
-                ? 'bg-emerald-500 text-white hover:bg-emerald-600'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                ? 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-green-600 text-white hover:shadow-2xl hover:shadow-emerald-500/50 hover:scale-[1.02] active:scale-[0.98] border-emerald-400 hover:border-emerald-300'
+                : 'bg-gradient-to-br from-gray-300 to-gray-400 text-gray-500 cursor-not-allowed border-gray-300'
             }`}
           >
-            {isProcessing ? (
-              <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                Kutilmoqda...
-              </span>
-            ) : currentStep === STEPS.PAYMENT ? (
-              '💳 To\'lovni amalga oshirish'
-            ) : (
-              'Keyingisi →'
+            {validateStep() && !isProcessing && (
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-white/30 to-emerald-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
             )}
+            <span className="relative flex items-center justify-center gap-2">
+              {isProcessing ? (
+                <>
+                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  <span className="text-lg animate-pulse">Kutilmoqda...</span>
+                </>
+              ) : currentStep === STEPS.PAYMENT ? (
+                <>
+                  <span className="text-2xl transition-transform duration-300 group-hover:scale-110" role="img" aria-label="Karta belgisi">💳</span>
+                  <span className="text-lg">To'lovni amalga oshirish</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-lg">Keyingisi</span>
+                  <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </>
+              )}
+            </span>
           </button>
         </div>
       </main>
