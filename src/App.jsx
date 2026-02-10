@@ -145,11 +145,20 @@ const App = () => {
       <header className="bg-linear-to-r from-zinc-900/95 via-zinc-950/95 to-zinc-900/95 backdrop-blur-lg text-white shadow-md sticky top-0 z-40">
         <div className="container mx-auto pl-4 pr-7 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl">💈</span>
-              <div>
-                <h1 className="text-2xl font-bold">Barber Shop</h1>
-                <p className="text-sm">Professional Sartaroshxona</p>
+            <div className="flex items-center gap-4">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-400 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse-glow"></div>
+                <div className="relative bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-950 p-3 rounded-2xl border-2 border-emerald-500/30 group-hover:border-emerald-400/50 transition-all duration-300 shadow-2xl group-hover:scale-110 group-hover:rotate-3">
+                  <span className="text-4xl drop-shadow-2xl filter brightness-110 group-hover:scale-110 transition-transform duration-300 inline-block">💈</span>
+                </div>
+              </div>
+              <div className="space-y-0.5">
+                <h1 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-white via-emerald-100 to-emerald-200 bg-clip-text text-transparent drop-shadow-2xl tracking-tight hover:tracking-wide transition-all duration-300">
+                  Barber Shop
+                </h1>
+                <p className="text-xs md:text-sm font-medium bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-300 bg-clip-text text-transparent tracking-wide">
+                  Professional Sartaroshxona
+                </p>
               </div>
             </div>
             {/* Step Indicator */}
