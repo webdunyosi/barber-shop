@@ -71,6 +71,39 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+/* Shimmer animation for the Next button */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Button glow effect */
+@keyframes button-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3),
+                0 8px 40px rgba(16, 185, 129, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(16, 185, 129, 0.5),
+                0 12px 60px rgba(16, 185, 129, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.animate-button-glow {
+  animation: button-glow 2.5s ease-in-out infinite;
+}
+
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .animate-pulse-glow {
@@ -78,6 +111,14 @@
   }
   
   .animate-ping {
+    animation: none;
+  }
+  
+  .animate-shimmer {
+    animation: none;
+  }
+  
+  .animate-button-glow {
     animation: none;
   }
 }

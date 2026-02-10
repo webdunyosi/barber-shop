@@ -270,12 +270,15 @@ const App = () => {
             disabled={!validateStep() || isProcessing}
             className={`group relative flex-1 py-4 px-6 rounded-xl font-semibold overflow-hidden shadow-lg transition-all duration-300 ease-out border ${
               validateStep() && !isProcessing
-                ? 'bg-linear-to-br from-emerald-500 via-emerald-600 to-green-600 text-white hover:shadow-2xl hover:shadow-emerald-500/50 hover:scale-[1.02] active:scale-[0.98] border-emerald-400 hover:border-emerald-300'
-                : 'bg-gradient-to-br from-gray-300 to-gray-400 text-gray-500 cursor-not-allowed border-gray-300'
+                ? 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-green-600 text-white hover:shadow-2xl hover:shadow-emerald-500/50 hover:scale-[1.02] active:scale-[0.98] border-emerald-400 hover:border-emerald-300 backdrop-blur-xl animate-button-glow'
+                : 'bg-gradient-to-br from-gray-300 to-gray-400 text-gray-500 cursor-not-allowed border-gray-300 backdrop-blur-sm'
             }`}
           >
             {validateStep() && !isProcessing && (
-              <span className="absolute inset-0 bg-linear-to-r from-emerald-400/0 via-white/30 to-emerald-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
+              <>
+                <span className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-white/30 to-emerald-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></span>
+              </>
             )}
             <span className="relative flex items-center justify-center gap-2">
               {isProcessing ? (
