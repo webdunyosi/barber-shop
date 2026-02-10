@@ -1,22 +1,31 @@
 // Telegram Bot API integration
-// Note: In production, this should be implemented on the backend for security
+// Calls are proxied through the backend server to avoid CORS issues
 
 import { formatPrice } from './format';
 
-const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || ''; // Set in .env file
-const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || ''; // Set in .env file
+// Backend API URL
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
-// Check if credentials are configured
-const isTelegramConfigured = () => {
-  return TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID;
+// Helper function to send message via backend
+const sendMessageViaBackend = async (message) => {
+  const response = await fetch(`${API_URL}/api/telegram/send`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ message }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'Failed to send message');
+  }
+
+  return await response.json();
 };
 
 export const sendBookingToTelegram = async (bookingData) => {
   try {
-    if (!isTelegramConfigured()) {
-      console.warn('Telegram credentials not configured. Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file');
-    }
-    
     const message = `
 🎉 *Yangi buyurtma!*
 
@@ -32,25 +41,9 @@ export const sendBookingToTelegram = async (bookingData) => {
 ✅ *Buyurtma tasdiqlandi!*
     `.trim();
 
-    // Sends API call to Telegram
-    console.log('Sending to Telegram:', message);
+    console.log('Sending to Telegram via backend:', message);
     
-    const response = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'Markdown',
-        }),
-      }
-    );
-    
-    return await response.json();
+    return await sendMessageViaBackend(message);
   } catch (error) {
     console.error('Telegram error:', error);
     throw error;
@@ -59,10 +52,6 @@ export const sendBookingToTelegram = async (bookingData) => {
 
 export const sendPaymentReceiptToTelegram = async (paymentData) => {
   try {
-    if (!isTelegramConfigured()) {
-      console.warn('Telegram credentials not configured. Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file');
-    }
-    
     const message = `
 🧾 *To'lov cheki*
 
@@ -83,24 +72,9 @@ export const sendPaymentReceiptToTelegram = async (paymentData) => {
 Sizni kutib qolamiz! 💈
     `.trim();
 
-    console.log('Sending receipt to Telegram:', message);
+    console.log('Sending receipt to Telegram via backend:', message);
     
-    const response = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'Markdown',
-        }),
-      }
-    );
-    
-    return await response.json();
+    return await sendMessageViaBackend(message);
   } catch (error) {
     console.error('Telegram error:', error);
     throw error;
