@@ -65,6 +65,10 @@ export const sendPaymentReceiptToTelegram = async (paymentData) => {
       console.warn('Telegram credentials not configured. Set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in .env file');
     }
     
+    if (!paymentData.receipt) {
+      throw new Error('To\'lov cheki yuklanmagan');
+    }
+    
     const message = `
 🧾 *To'lov cheki*
 
@@ -73,8 +77,6 @@ export const sendPaymentReceiptToTelegram = async (paymentData) => {
 
 💈 *Xizmat:* ${paymentData.service.name}
 💰 *To'langan summa:* ${formatPrice(paymentData.service.price)} so'm
-
-💳 *Karta:* **** **** **** ${paymentData.cardNumber.slice(-4)}
 
 📅 *Sana:* ${paymentData.date}
 🕐 *Vaqt:* ${paymentData.time}
@@ -87,18 +89,18 @@ Sizni kutib qolamiz! 💈
 
     console.log('Sending receipt to Telegram:', message);
     
+    // Send photo with caption
+    const formData = new FormData();
+    formData.append('chat_id', TELEGRAM_CHAT_ID);
+    formData.append('caption', message);
+    formData.append('parse_mode', 'Markdown');
+    formData.append('photo', paymentData.receipt);
+    
     const response = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'Markdown',
-        }),
+        body: formData,
       }
     );
     
