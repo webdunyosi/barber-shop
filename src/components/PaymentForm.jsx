@@ -50,7 +50,7 @@ const PaymentForm = ({ paymentData, onUpdate, bookingInfo }) => {
       </h2>
       
       {/* Order Summary */}
-      <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl shadow-lg p-6 mb-6 text-white">
+      <div className="bg-gradient-to-br from-emerald-500/95 to-emerald-600/95 backdrop-blur-md rounded-xl shadow-lg p-6 mb-6 text-white">
         <h3 className="text-xl font-semibold mb-4">Buyurtma tafsilotlari</h3>
         <div className="space-y-2">
           <div className="flex justify-between">
@@ -74,7 +74,7 @@ const PaymentForm = ({ paymentData, onUpdate, bookingInfo }) => {
       </div>
 
       {/* Payment Form */}
-      <div className="bg-white rounded-xl shadow-lg p-8">
+      <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-8">
         <div className="space-y-6">
           {/* Card Number */}
           <div>

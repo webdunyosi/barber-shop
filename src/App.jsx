@@ -150,7 +150,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 web-pattern">
       {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-40">
+      <header className="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -248,7 +248,7 @@ const App = () => {
           {currentStep > STEPS.SERVICE && (
             <button
               onClick={handleBack}
-              className="flex-1 bg-gray-200 text-gray-700 py-4 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              className="flex-1 bg-gray-200/80 backdrop-blur-sm text-gray-700 py-4 rounded-lg font-semibold hover:bg-gray-300/80 transition-colors"
             >
               ← Ortga
             </button>
@@ -258,8 +258,8 @@ const App = () => {
             disabled={!validateStep() || isProcessing}
             className={`flex-1 py-4 rounded-lg font-semibold transition-colors ${
               validateStep() && !isProcessing
-                ? 'bg-emerald-500 text-white hover:bg-emerald-600'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                ? 'bg-emerald-500/90 backdrop-blur-sm text-white hover:bg-emerald-600/90'
+                : 'bg-gray-300/80 backdrop-blur-sm text-gray-500 cursor-not-allowed'
             }`}
           >
             {isProcessing ? (
@@ -291,7 +291,7 @@ const App = () => {
       />
 
       {/* Footer */}
-      <footer className="bg-white shadow-md mt-16">
+      <footer className="bg-white/80 backdrop-blur-md shadow-md mt-16">
         <div className="container mx-auto px-4 py-6">
           <div className="text-center">
             <p className="text-gray-600 text-sm">

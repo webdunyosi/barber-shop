@@ -14,8 +14,8 @@ const ServiceSelection = ({ services, selectedService, onSelectService }) => {
             onClick={() => onSelectService(service)}
             className={`cursor-pointer p-6 rounded-xl border-2 transition-all duration-300 hover:shadow-lg ${
               selectedService?.id === service.id
-                ? 'border-emerald-500 bg-emerald-50 shadow-xl'
-                : 'border-gray-200 bg-white hover:border-emerald-300'
+                ? 'border-emerald-500 bg-emerald-50/80 backdrop-blur-sm shadow-xl'
+                : 'border-gray-200 bg-white/80 backdrop-blur-sm hover:border-emerald-300'
             }`}
           >
             <div className="flex items-center gap-4">

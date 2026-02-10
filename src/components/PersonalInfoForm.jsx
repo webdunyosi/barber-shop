@@ -50,7 +50,7 @@ const PersonalInfoForm = ({ formData, onUpdate }) => {
         Ma'lumotlaringizni kiriting
       </h2>
       
-      <div className="bg-white rounded-xl shadow-lg p-8">
+      <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-8">
         <div className="space-y-6">
           {/* Name Field */}
           <div>

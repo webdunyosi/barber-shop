@@ -75,7 +75,7 @@ const TimeSelection = ({ timeSlots, selectedDate, selectedTime, onSelectDate, on
       </h2>
       
       {/* Calendar */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+      <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-6 mb-8">
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={prevMonth}
@@ -117,10 +117,10 @@ const TimeSelection = ({ timeSlots, selectedDate, selectedTime, onSelectDate, on
                     disabled={!available}
                     className={`w-full h-full rounded-lg font-medium transition-all ${
                       selected
-                        ? 'bg-emerald-500 text-white shadow-lg'
+                        ? 'bg-emerald-500/90 backdrop-blur-sm text-white shadow-lg'
                         : available
-                        ? 'bg-gray-100 hover:bg-emerald-100 hover:text-emerald-700'
-                        : 'bg-gray-50 text-gray-300 cursor-not-allowed'
+                        ? 'bg-gray-100/80 backdrop-blur-sm hover:bg-emerald-100/80 hover:text-emerald-700'
+                        : 'bg-gray-50/60 backdrop-blur-sm text-gray-300 cursor-not-allowed'
                     }`}
                   >
                     {date.getDate()}
@@ -134,7 +134,7 @@ const TimeSelection = ({ timeSlots, selectedDate, selectedTime, onSelectDate, on
 
       {/* Time Slots */}
       {selectedDate && (
-        <div className="bg-white rounded-xl shadow-lg p-6">
+        <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-6">
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             Vaqtni tanlang ({formatDate(selectedDate)})
           </h3>
@@ -145,8 +145,8 @@ const TimeSelection = ({ timeSlots, selectedDate, selectedTime, onSelectDate, on
                 onClick={() => onSelectTime(time)}
                 className={`py-3 px-4 rounded-lg font-medium transition-all ${
                   selectedTime === time
-                    ? 'bg-emerald-500 text-white shadow-lg'
-                    : 'bg-gray-100 hover:bg-emerald-100 hover:text-emerald-700'
+                    ? 'bg-emerald-500/90 backdrop-blur-sm text-white shadow-lg'
+                    : 'bg-gray-100/80 backdrop-blur-sm hover:bg-emerald-100/80 hover:text-emerald-700'
                 }`}
               >
                 {time}
