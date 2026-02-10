@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatPrice } from '../utils/format';
 
 const ServiceSelection = ({ services, selectedService, onSelectService }) => {
+  const [imageErrors, setImageErrors] = useState({});
+
+  const handleImageError = (serviceId) => {
+    setImageErrors(prev => ({ ...prev, [serviceId]: true }));
+  };
+
   return (
     <div className="w-full mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -39,14 +45,18 @@ const ServiceSelection = ({ services, selectedService, onSelectService }) => {
               <div className={`w-20 h-20 flex items-center justify-center transition-all duration-300 ${
                 selectedService?.id === service.id ? 'scale-110' : 'group-hover:scale-110'
               }`}>
-                <img 
-                  src={service.image} 
-                  alt={`${service.name_en} - ${service.name}`}
-                  className="w-full h-full object-cover rounded-lg"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                  }}
-                />
+                {!imageErrors[service.id] ? (
+                  <img 
+                    src={service.image} 
+                    alt={service.name}
+                    className="w-full h-full object-cover rounded-lg"
+                    onError={() => handleImageError(service.id)}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-green-500/20 rounded-lg text-4xl">
+                    💈
+                  </div>
+                )}
               </div>
               <div className="flex-1">
                 <h3 className={`text-xl font-semibold transition-colors duration-300 ${
