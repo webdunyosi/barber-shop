@@ -2,6 +2,7 @@
 
 /* Enhanced web pattern background */
 .web-pattern {
+  background-color: black;
   background-image: radial-gradient(
       circle at 25% 25%,
       rgba(0, 255, 136, 0.15) 0%,
