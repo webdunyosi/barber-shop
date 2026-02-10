@@ -69,7 +69,7 @@ const TimeSelection = ({ timeSlots, selectedDate, selectedTime, onSelectDate, on
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full mx-auto">
       {/* Calendar */}
       <div className="bg-zinc-800/70 border border-green-500/50 rounded-xl p-8 mb-8">
         <div className="flex items-center justify-between mb-6">

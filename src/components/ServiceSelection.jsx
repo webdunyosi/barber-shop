@@ -3,7 +3,7 @@ import { formatPrice } from '../utils/format';
 
 const ServiceSelection = ({ services, selectedService, onSelectService }) => {
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {services.map((service) => (
           <div

@@ -45,7 +45,7 @@ const PersonalInfoForm = ({ formData, onUpdate }) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full mx-auto">
       <div className="bg-zinc-800/70 border border-green-500/50 rounded-xl p-8">
         <div className="space-y-6">
           {/* Name Field */}
