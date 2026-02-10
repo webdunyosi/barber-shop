@@ -102,7 +102,7 @@ const App = () => {
       try {
         await sendBookingToTelegram(bookingInfo);
       } catch (telegramError) {
-        console.warn('Telegram notification failed, but continuing with success:', telegramError);
+        console.warn('Telegram booking notification failed, displaying success modal anyway:', telegramError);
       }
 
       // Simulate payment processing
@@ -116,7 +116,7 @@ const App = () => {
       try {
         await sendPaymentReceiptToTelegram(paymentInfo);
       } catch (telegramError) {
-        console.warn('Telegram receipt failed, but continuing with success:', telegramError);
+        console.warn('Telegram payment receipt notification failed, displaying success modal anyway:', telegramError);
       }
 
       setShowSuccessModal(true);
