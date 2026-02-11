@@ -6,7 +6,7 @@ const Header = ({ currentStep }) => {
       <div className="container mx-auto pl-4 pr-7 py-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img className='w-20' src="logo.png" alt="" />
+            <img className='w-20' src="/logo.png" alt="" />
             <div>
               <h1 className="text-2xl font-bold uppercase">Web Barber</h1>
               <p className="text-sm text-emerald-500">Professional Sartaroshxona</p>
