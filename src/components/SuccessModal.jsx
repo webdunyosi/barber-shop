@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatPrice } from '../utils/format';
+import { formatPrice } from '../utils/format.js';
 
 const SuccessModal = ({ isOpen, onClose, bookingData }) => {
   if (!isOpen) return null;

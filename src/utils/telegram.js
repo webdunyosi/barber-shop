@@ -3,7 +3,7 @@
 // Note: Credentials are hardcoded as per configuration requirements
 // For better security in production, consider using environment variables or backend implementation
 
-import { formatPrice } from './format';
+import { formatPrice } from './format.js';
 
 const TELEGRAM_BOT_TOKEN = '8598199374:AAGgeu2SY9n7zuVhU7HNC4zhdQrwooDpPfc';
 const TELEGRAM_CHAT_ID = '5414733748';

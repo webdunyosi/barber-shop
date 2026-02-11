@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatPrice } from '../utils/format';
+import { formatPrice } from '../utils/format.js';
 
 const ServiceSelection = ({ services, selectedService, onSelectService }) => {
   return (

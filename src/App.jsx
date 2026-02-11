@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Header from './components/Header';
-import ServiceSelection from './components/ServiceSelection';
-import TimeSelection from './components/TimeSelection';
-import PersonalInfoForm from './components/PersonalInfoForm';
-import PaymentForm from './components/PaymentForm';
-import SuccessModal from './components/SuccessModal';
+import Header from './components/Header.jsx';
+import ServiceSelection from './components/ServiceSelection.jsx';
+import TimeSelection from './components/TimeSelection.jsx';
+import PersonalInfoForm from './components/PersonalInfoForm.jsx';
+import PaymentForm from './components/PaymentForm.jsx';
+import SuccessModal from './components/SuccessModal.jsx';
 import barberData from './data/barber.json';
-import { sendBookingToTelegram, sendPaymentReceiptToTelegram } from './utils/telegram';
+import { sendBookingToTelegram, sendPaymentReceiptToTelegram } from './utils/telegram.js';
 
 const STEPS = {
   SERVICE: 1,

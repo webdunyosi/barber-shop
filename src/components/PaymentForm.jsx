@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react"
-import { formatPrice } from "../utils/format"
+import { formatPrice } from "../utils/format.js"
 
 const PaymentForm = ({ paymentData, onUpdate, bookingInfo }) => {
   const [errors, setErrors] = useState({})
