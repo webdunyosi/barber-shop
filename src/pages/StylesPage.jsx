@@ -1,69 +1,8 @@
-
-import React from 'react';
+import React from "react"
+import barberStyles from "../data/barberStyles.json"
+import hairStyles from "../data/hairStyles.json"
 
 const StylesPage = () => {
-  const barberStyles = [
-    {
-      id: 1,
-      title: "Klassik Soch Kesimi",
-      description: "An'anaviy va professional ko'rinish uchun klassik soch kesimi. Rasmiy va kundalik hayot uchun juda mos.",
-      image: "/barber/1.png",
-      category: "Soch Kesimi"
-    },
-    {
-      id: 2,
-      title: "Zamonaviy Fade",
-      description: "Yon taraflari qisqa, yuqori qismi uzunroq bo'lgan zamonaviy stil. Yoshlar orasida juda mashhur.",
-      image: "/barber/2.png",
-      category: "Soch Kesimi"
-    },
-    {
-      id: 3,
-      title: "Krem Berish va Stilizatsiya",
-      description: "Professional soch kesimi, yuvish va krem bilan stilizatsiya. To'liq parvarish xizmati.",
-      image: "/barber/3.png",
-      category: "Soch Kesimi"
-    },
-    {
-      id: 4,
-      title: "Soqol Tashkil Etish",
-      description: "Professional soqol kesish va tashkil etish. Yuz chizig'iga mos ravishda toza va aniq.",
-      image: "/barber/4.png",
-      category: "Soqol"
-    }
-  ];
-
-  const hairStyles = [
-    {
-      id: 1,
-      title: "Klassik Pompadour",
-      description: "Yuqori qismi hajmli va orqaga taragan zamonaviy klassik stil. Elegant va professional ko'rinish.",
-      image: "/styles/1.png",
-      category: "Soch Stili"
-    },
-    {
-      id: 2,
-      title: "Undercut",
-      description: "Yon taraflar juda qisqa, yuqori qismi uzun bo'lgan bold stil. Kontrast va zamonaviy.",
-      image: "/styles/2.png",
-      category: "Soch Stili"
-    },
-    {
-      id: 3,
-      title: "Textured Crop",
-      description: "Qisqa va tabiy ko'rinishli, oson parvarish qilinadigan zamonaviy stil.",
-      image: "/styles/3.png",
-      category: "Soch Stili"
-    },
-    {
-      id: 4,
-      title: "Side Part",
-      description: "Yon tarafdan bo'lingan klassik stil. Professional va pok ko'rinish beradi.",
-      image: "/styles/4.png",
-      category: "Soch Stili"
-    }
-  ];
-
   return (
     <div className="min-h-screen w-full lg:w-5/6 ml-auto">
       {/* Page Header */}
@@ -72,14 +11,17 @@ const StylesPage = () => {
           Soch va Soqol Stillari
         </h1>
         <p className="text-white/70 text-lg max-w-2xl mx-auto">
-          Bizning sartaroshxonamizda mavjud bo'lgan eng mashhur soch kesimi va soqol stillari bilan tanishing
+          Bizning sartaroshxonamizda mavjud bo'lgan eng mashhur soch kesimi va
+          soqol stillari bilan tanishing
         </p>
       </div>
 
       {/* Barber Services Section */}
       <section className="mb-16">
         <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-          <span className="text-4xl" role="img" aria-label="Qaychi">✂️</span>
+          <span className="text-4xl" role="img" aria-label="Qaychi">
+            ✂️
+          </span>
           Sartaroshlik Xizmatlari
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -96,7 +38,7 @@ const StylesPage = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                
+
                 {/* Category Badge */}
                 <div className="absolute top-4 right-4">
                   <span className="px-3 py-1 bg-emerald-500/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm">
@@ -125,7 +67,9 @@ const StylesPage = () => {
       {/* Hair Styles Section */}
       <section>
         <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-          <span className="text-4xl" role="img" aria-label="Soch">💇</span>
+          <span className="text-4xl" role="img" aria-label="Soch">
+            💇
+          </span>
           Mashhur Soch Stillari
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -142,7 +86,7 @@ const StylesPage = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                
+
                 {/* Category Badge */}
                 <div className="absolute top-4 right-4">
                   <span className="px-3 py-1 bg-emerald-500/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm">
@@ -174,7 +118,8 @@ const StylesPage = () => {
           O'zingizga mos stilni tanladingizmi?
         </h3>
         <p className="text-white/70 mb-6">
-          Sartaroshxonamizga tashrif buyuring va professional ustalarimiz sizga eng yaxshi stilni tanlab berishadi
+          Sartaroshxonamizga tashrif buyuring va professional ustalarimiz sizga
+          eng yaxshi stilni tanlab berishadi
         </p>
         <a
           href="/"
@@ -184,7 +129,7 @@ const StylesPage = () => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StylesPage;
+export default StylesPage
