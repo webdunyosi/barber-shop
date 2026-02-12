@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { HiX } from 'react-icons/hi';
 import menuItems from '../../data/menu.json';
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -23,6 +24,17 @@ const Sidebar = ({ isOpen, onClose }) => {
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         <div className="p-6">
+          {/* Close button - only visible on mobile */}
+          <div className="flex justify-end mb-4 lg:hidden">
+            <button
+              onClick={onClose}
+              className="text-white/70 hover:text-white hover:bg-white/10 p-2 rounded-lg transition-all duration-300"
+              aria-label="Close menu"
+            >
+              <HiX className="w-6 h-6" />
+            </button>
+          </div>
+          
           {/* Navigation Menu */}
           <nav className="space-y-2">
             {menuItems.map((item) => (
