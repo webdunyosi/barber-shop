@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoMdClose } from 'react-icons/io';
 import { formatPrice } from '../../../utils/format';
 
 const SuccessModal = ({ isOpen, onClose, bookingData }) => {
@@ -6,7 +7,16 @@ const SuccessModal = ({ isOpen, onClose, bookingData }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-zinc-800/70 border border-green-500/50 rounded-2xl shadow-2xl max-w-md w-full p-8 animate-bounce-in backdrop-blur-md">
+      <div className="bg-zinc-800/70 border border-green-500/50 rounded-2xl shadow-2xl max-w-md w-full p-8 animate-bounce-in backdrop-blur-md relative">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 z-10"
+          aria-label="Yopish"
+        >
+          <IoMdClose className="w-6 h-6" />
+        </button>
+
         {/* Success Icon */}
         <div className="flex justify-center mb-6">
           <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center border border-emerald-500/50">
