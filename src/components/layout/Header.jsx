@@ -1,6 +1,7 @@
 import React from 'react';
+import MenuButton from './MenuButton';
 
-const Header = ({ currentStep }) => {
+const Header = ({ currentStep, isMobileMenuOpen, toggleMobileMenu }) => {
   return (
     <header className="bg-linear-to-r from-zinc-900/95 via-zinc-950/95 to-zinc-900/95 backdrop-blur-lg text-white shadow-md shadow-emerald-500 sticky top-0 z-40">
       <div className="container mx-auto pl-4 pr-7 py-0">
@@ -12,6 +13,9 @@ const Header = ({ currentStep }) => {
               <p className="text-sm text-emerald-500">Professional Sartaroshxona</p>
             </div>
           </div>
+          {/* Mobile Menu Button */}
+          <MenuButton isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
+          
           {/* Step Indicator */}
           <div className="hidden md:flex items-center gap-3" role="navigation" aria-label="Booking progress">
             {[1, 2, 3, 4].map((step) => (
