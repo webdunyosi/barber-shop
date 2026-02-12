@@ -57,7 +57,7 @@ const Header = ({ currentStep, toggleSidebar, isSidebarOpen }) => {
           <button 
             onClick={toggleSidebar}
             className="text-white hover:text-emerald-500 transition-colors duration-300"
-            aria-label="Menu"
+            aria-label={isSidebarOpen ? 'Close menu' : 'Open menu'}
           >
             {isSidebarOpen ? (
               <HiX className="w-8 h-8" />
