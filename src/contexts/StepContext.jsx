@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StepContext } from './stepContext';
+import { StepContext } from './StepContext';
 
 export const StepProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(1);
