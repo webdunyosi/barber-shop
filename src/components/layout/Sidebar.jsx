@@ -1,19 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import menuItems from '../../data/menu.json';
 
 const Sidebar = () => {
-  const menuItems = [
-    {
-      name: 'Buyurtma qilish',
-      path: '/',
-      icon: '📅',
-    },
-    {
-      name: 'Soch va Soqol Stillari',
-      path: '/stillar',
-      icon: '✂️',
-    },
-  ];
 
   return (
     <aside className="w-64 bg-zinc-900/95 backdrop-blur-lg border-r border-emerald-500/30 min-h-screen sticky top-0">
