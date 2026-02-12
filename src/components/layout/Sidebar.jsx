@@ -6,9 +6,14 @@ const Sidebar = () => {
 
   useEffect(() => {
     fetch('/menu.json')
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to load menu');
+        }
+        return response.json();
+      })
       .then((data) => setMenuItems(data))
-      .catch((error) => console.error('Error loading menu:', error));
+      .catch((error) => console.error('Error loading menu configuration:', error));
   }, []);
 
   return (
