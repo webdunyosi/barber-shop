@@ -20,12 +20,12 @@ const MainLayout = ({ currentStep = 1 }) => {
       <Header currentStep={currentStep} toggleSidebar={toggleSidebar} />
       
       {/* Main Content with Sidebar */}
-      <div className="flex relative">
+      <div className="relative">
         {/* Sidebar */}
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         
-        {/* Page Content */}
-        <main className="flex-1 container mx-auto px-4 py-8">
+        {/* Page Content - add left margin on desktop to account for fixed sidebar */}
+        <main className="container mx-auto px-4 py-8 lg:ml-64">
           <Outlet />
         </main>
       </div>
