@@ -237,7 +237,7 @@ const BookingPage = () => {
           }`}
         >
           {validateStep() && !isProcessing && (
-            <span className="absolute inset-0 bg-linear-to-r from-emerald-400/0 via-white/30 to-emerald-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></span>
+            <span className="absolute inset-0 bg-linear-to-r from-emerald-400/0 via-white/30 to-emerald-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></span>
           )}
           <span className="relative flex items-center justify-center gap-2">
             {isProcessing ? (

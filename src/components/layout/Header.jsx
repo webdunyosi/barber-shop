@@ -5,7 +5,13 @@ const Header = ({ currentStep, toggleSidebar }) => {
   return (
     <header className="w-full lg:w-5/6 ml-auto bg-linear-to-r from-zinc-900/95 via-zinc-950/95 to-zinc-900/95 backdrop-blur-lg text-white shadow-md shadow-emerald-500 sticky top-0 z-40">
       <div className="container mx-auto pl-4 pr-7 py-0">
-        <div className="flex items-center justify-end py-4">
+        <div className="flex items-center justify-between lg:justify-end py-4">
+          {/* Logo */}
+          <div className="flex lg:hidden items-center gap-3">
+            <img className="w-14" src="logo.png" alt="" />
+            <h1 className="text-xl font-bold uppercase text-emerald-500">Web Barber</h1>
+          </div>
+
           {/* Step Indicator - Centered */}
           <div className="hidden md:flex items-center gap-3" role="navigation" aria-label="Booking progress">
             {[1, 2, 3, 4].map((step) => (
