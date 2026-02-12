@@ -29,7 +29,12 @@ const Sidebar = ({ isOpen, onClose }) => {
               <NavLink
                 key={item.path}
                 to={item.path}
-                onClick={onClose}
+                onClick={() => {
+                  // Only close on mobile/tablet (< 1024px)
+                  if (window.innerWidth < 1024) {
+                    onClose();
+                  }
+                }}
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${
                     isActive
