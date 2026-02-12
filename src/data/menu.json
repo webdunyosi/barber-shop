@@ -8,5 +8,10 @@
     "name": "Soch va Soqol Stillari",
     "path": "/stillar",
     "icon": "✂️"
+  },
+  {
+    "name": "Sartarosh haqida",
+    "path": "/sartarosh",
+    "icon": "👨‍💼"
   }
 ]
