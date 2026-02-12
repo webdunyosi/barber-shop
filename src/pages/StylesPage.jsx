@@ -91,7 +91,7 @@ const StylesPage = () => {
               <div className="relative h-64 overflow-hidden">
                 <img
                   src={style.image}
-                  alt={style.title}
+                  alt={`${style.title} - ${style.description}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
@@ -137,7 +137,7 @@ const StylesPage = () => {
               <div className="relative h-64 overflow-hidden">
                 <img
                   src={style.image}
-                  alt={style.title}
+                  alt={`Soch stili: ${style.title} - ${style.description}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
